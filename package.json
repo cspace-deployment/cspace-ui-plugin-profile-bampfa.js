@@ -39,7 +39,9 @@
     "start": "cross-env NODE_ENV=test karma start",
     "test": "cross-env NODE_ENV=test karma start --singleRun=true"
   },
-  "dependencies": {},
+  "dependencies": {
+    "react-intl": "^2.3.0"
+  },
   "devDependencies": {
     "babel-cli": "^6.11.4",
     "babel-core": "^6.13.1",
