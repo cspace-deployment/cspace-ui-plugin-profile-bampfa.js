@@ -243,7 +243,7 @@ export default (pluginContext) => {
           [config]: {
             messages: defineMessages({
               name: {
-                id: 'field.intakes_common.packingNote.name',
+                id: 'field.intakes_common.disposition.name',
                 defaultMessage: 'Disposition',
               },
             }),
