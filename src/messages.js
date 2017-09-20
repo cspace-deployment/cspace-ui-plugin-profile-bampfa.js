@@ -1,3 +1,5 @@
+import { defineMessages } from 'react-intl';
+
 export default {
   'about.title': 'CollectionSpace',
   'about.content': `
@@ -19,4 +21,6 @@ export default {
     'field.intakes_common.currentLocationNote.name': 'Current location note',
     'field.intakes_common.entryDate.name': 'Date in',
     'field.intakes_common.despositorsRequirements.name': 'Address for Agenda',
+    'field.bampfa_collectionobjects.editionNumber.name': 'Edition',
+    'panel.collectionobject.hierarchy': 'Object Hierarchy',
 };
