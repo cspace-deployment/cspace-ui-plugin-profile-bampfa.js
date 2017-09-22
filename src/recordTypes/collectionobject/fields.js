@@ -148,7 +148,7 @@ export default (pluginContext) => {
             dataType: DATA_TYPE_INT,
             messages: defineMessages({
               name: {
-                id: 'field.bampfa_collectionobjects.accNunberPart1.name',
+                id: 'field.bampfa_collectionobjects.accNumberPart1.name',
                 defaultMessage: 'Year',
               },
             }),
@@ -162,7 +162,7 @@ export default (pluginContext) => {
             dataType: DATA_TYPE_INT,
             messages: defineMessages({
               name: {
-                id: 'field.bampfa_collectionobjects.accNunberPart2.name',
+                id: 'field.bampfa_collectionobjects.accNumberPart2.name',
                 defaultMessage: 'Gift',
               },
             }),
@@ -191,7 +191,7 @@ export default (pluginContext) => {
           [config]: {
             messages: defineMessages({
               name: {
-                id: 'field.bampfa_collectionobjects.alpha.name',
+                id: 'field.bampfa_collectionobjects.accNumberPart5.name',
                 defaultMessage: 'Alpha',
               },
             }),
