@@ -1,8 +1,8 @@
 import { defineMessages } from 'react-intl';
 
 export default {
-  'about.title': 'CollectionSpace',
-  'about.content': `
+  'about.title': 'CollectionSpace - BAMPFA',
+  'about.contentHTML': `
     <p>
       Collections management system of the UC Berkeley Art Museum and Pacific Film Archive.
     </p>
@@ -17,9 +17,6 @@ export default {
     'field.collectionobjects_common.objectProductionPeople.name': 'Organization',
     'field.collectionobjects_common.objectProductionPeopleGroup.name': 'Production Organization',
     'field.collectionobjects_common.editionNumber.name': 'Edition',
-    'field.collectionobjects_common..name': '',
-    'field.collectionobjects_common..name': '',
-    'field.collectionobjects_common..name': '',
     'field.bampfa_collectionobjects.editionNumber.name': 'Edition',
     'panel.collectionobject.hierarchy': 'Object Hierarchy',
 
