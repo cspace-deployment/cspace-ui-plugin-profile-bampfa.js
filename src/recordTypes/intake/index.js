@@ -12,16 +12,16 @@ export default pluginContext => ({
   optionLists: {
     receipt: {
       values: [
-        'yes',
-        'no',
+        'Yes',
+        'No',
       ],
       messages: defineMessages({
         yes: {
-          id: 'option.receipt.yes',
+          id: 'option.receipt.Yes',
           defaultMessage: 'Yes',
         },
         no: {
-          id: 'option.receipt.no',
+          id: 'option.receipt.No',
           defaultMessage: 'No',
         },
       }),
