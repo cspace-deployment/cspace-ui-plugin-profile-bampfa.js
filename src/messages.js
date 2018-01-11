@@ -19,13 +19,12 @@ export default {
   'field.collectionobjects_common.computedCurrentLocation.name': 'Current Storage Location',
 
   /* Intake Messages */
-  'field.intakes_common.entryNumber.name': 'TR Number',
+  'field.intakes_common.entryNumber.name': 'TR number',
   'field.intakes_common.entryNote.name': 'Intake note',
   'field.intakes_common.packingNote.name': 'Disposition',
   'field.intakes_common.entryReason.name': 'Purpose',
   'field.intakes_common.currentOwner.name': 'Source',
   'field.intakes_common.entryDate.name': 'Date in',
-  'field.intakes_common.despositorsRequirements.name': 'Address for Agenda',
 
   /* Movements/Location Messages */
   'panel.movements.movement': 'Inventory/Movement Information',
