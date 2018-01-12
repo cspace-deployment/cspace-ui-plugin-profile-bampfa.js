@@ -9,8 +9,6 @@ import media from './media';
 import movement from './movement';
 import organization from './organization';
 import person from './person';
-import place from './place';
-import work from './work';
 
 export default pluginContext => [
   citation,
@@ -23,8 +21,6 @@ export default pluginContext => [
   movement,
   organization,
   person,
-  place,
-  work,
 ]
 .map(configurer => configurer(pluginContext))
 .reduce(merge, {
