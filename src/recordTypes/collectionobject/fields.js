@@ -9,6 +9,7 @@ export default (pluginContext) => {
     StructuredDateInput,
     TextInput,
     CheckboxInput,
+    RichTextInput,
     TermPickerInput,
   } = pluginContext.inputComponents;
 
@@ -70,6 +71,16 @@ export default (pluginContext) => {
                 type: CompoundInput,
               },
             },
+            bampfaFormattedTitle: {
+              [config]: {
+                view: {
+                  type: RichTextInput,
+                  props: {
+                    multiline: true,
+                  },
+                },
+              },
+            },
             bampfaTitle: {
               [config]: {
                 view: {
@@ -77,6 +88,18 @@ export default (pluginContext) => {
                   props: {
                     multiline: true,
                   },
+                },
+                compute: (value, path, recordData) => {
+                  const titles = recordData.getIn(['document', 'ns2:collectionobjects_common', 'titleGroupList', 'titleGroup']);
+                  const titleList = [];
+                  for (const title of titles) {
+                    if (title !== undefined) {
+                      if (title.getIn(['bampfaFormattedTitle']) !== '') {
+                        titleList.push(title.getIn(['bampfaFormattedTitle']));
+                      }
+                    }
+                  }
+                  return titleList.join('\n');
                 },
               },
             },
@@ -107,7 +130,6 @@ export default (pluginContext) => {
                   type: TextInput,
                   props: {
                     readOnly: true,
-                    source: 'measuredPart',
                   },
                 },
               },
@@ -1250,13 +1272,83 @@ export default (pluginContext) => {
             view: {
               type: TextInput,
             },
+            compute: (value, path, recordData) => {
+              const prefix = recordData.getIn(['document', 'ns2:collectionobjects_bampfa', 'accNumberPrefix']);
+              const partOne = recordData.getIn(['document', 'ns2:collectionobjects_bampfa', 'accNumberPart1']);
+              const partTwo = recordData.getIn(['document', 'ns2:collectionobjects_bampfa', 'accNumberPart2']);
+              const partThree = recordData.getIn(['document', 'ns2:collectionobjects_bampfa', 'accNumberPart3']);
+              const partFour = recordData.getIn(['document', 'ns2:collectionobjects_bampfa', 'accNumberPart4']);
+              const partFive = recordData.getIn(['document', 'ns2:collectionobjects_bampfa', 'accNumberPart5']);
+              const parts = [prefix, partOne, partTwo,
+                partThree, partFour, partFive].filter(part => !!part);
+
+              const sortableParts = [];
+              const isNumericRegExp = /^\d+$/;
+
+              for (let i = 0; i < parts.length; i += 1) {
+                let part = parts[i];
+
+                if (isNumericRegExp.test(part)) {
+                  const len = part.length;
+                  part = (new Array(len + 1).join('0') + part).slice(-len);
+                } else {
+                  part = part.toLowerCase();
+                }
+                sortableParts.push(part);
+              }
+              return sortableParts.join(' ');
+            },
           },
         },
         effectiveObjectNumber: {
           [config]: {
-            readOnly: true,
             view: {
               type: TextInput,
+              props: {
+                readOnly: true,
+              },
+            },
+            messages: defineMessages({
+              name: {
+                id: 'field.collectionobjects_bampfa.effectiveObjectNumber.name',
+                defaultMessage: 'effectiveObjectNumber',
+              },
+            }),
+            compute: (value, path, recordData) => {
+              const prefix = recordData.getIn(['document', 'ns2:collectionobjects_bampfa', 'accNumberPrefix']);
+              const partOne = recordData.getIn(['document', 'ns2:collectionobjects_bampfa', 'accNumberPart1']);
+              const partTwo = recordData.getIn(['document', 'ns2:collectionobjects_bampfa', 'accNumberPart2']);
+              const partThree = recordData.getIn(['document', 'ns2:collectionobjects_bampfa', 'accNumberPart3']);
+              const partFour = recordData.getIn(['document', 'ns2:collectionobjects_bampfa', 'accNumberPart4']);
+              const partFive = recordData.getIn(['document', 'ns2:collectionobjects_bampfa', 'accNumberPart5']);
+              let otherNumber = recordData.getIn(['document', 'ns2:collectionobjects_bampfa', 'otherNumberList', 'otherNumberGroup']);
+
+              if (otherNumber) {
+                otherNumber = otherNumber.toArray();
+              } else {
+                otherNumber = [];
+              }
+              const objectNumber = [prefix, partOne, partTwo, partThree, partFour, partFive].filter(part => !!part).join('.');
+              // The effective object number is the objectNumber, if it exists. Otherwise,
+              // fall back to the primary otherNumber.
+              let effectiveObjectNumber = objectNumber;
+
+              if (!effectiveObjectNumber) {
+                let fallbackNumber = null;
+
+                if (otherNumber.length > 0) {
+                  for (let i = 0; i < otherNumber.length; i += 1) {
+                    const candidateNumber = otherNumber[i];
+
+                    if (candidateNumber) {
+                      fallbackNumber = candidateNumber.get('numberValue');
+                      break;
+                    }
+                  }
+                }
+                effectiveObjectNumber = fallbackNumber;
+              }
+              return effectiveObjectNumber;
             },
           },
         },
@@ -1271,6 +1363,9 @@ export default (pluginContext) => {
           [config]: {
             view: {
               type: TextInput, // TO DO: Double check
+              priops: {
+                readOnly: true,
+              },
             },
           },
         },
@@ -1279,6 +1374,31 @@ export default (pluginContext) => {
             readOnly: true,
             view: {
               type: TextInput,
+            },
+            messages: defineMessages({
+              name: {
+                id: 'field.collectionobjects_bampfa.sortableEffectiveObjectNumber.name',
+                defaultMessage: 'sortableEffectiveObjectNumber',
+              },
+            }),
+            compute: (value, path, recordData) => {
+              const parts = recordData.getIn(['document', 'ns2:collectionobjects_bampfa', 'effectiveObjectNumber']).split('.');
+              // console.log(parts);
+              const sortableParts = [];
+              const isNumericRegExp = /^\d+$/;
+
+              for (let i = 0; i < parts.length; i += 1) {
+                let part = parts[i];
+
+                if (isNumericRegExp.test(part)) {
+                  const len = part.length;
+                  part = (new Array(len + 1).join('0') + part).slice(-len);
+                } else {
+                  part = part.toLowerCase();
+                }
+                sortableParts.push(part);
+              }
+              return sortableParts.join(' ');
             },
           },
         },
@@ -1338,24 +1458,6 @@ export default (pluginContext) => {
         },
         physicalDescription: {
           [config]: {
-            view: {
-              type: TextInput,
-            },
-          },
-        },
-        bampfaFormattedTitle: { // TO DO: Replace TITLE WITH RICH TEXT with this, ask Ray how
-          [config]: {
-            view: {
-              type: TextInput,
-              props: {
-                multiline: true,
-              },
-            },
-          },
-        },
-        bampfaTitle: {
-          [config]: {
-            readOnly: true,
             view: {
               type: TextInput,
             },
