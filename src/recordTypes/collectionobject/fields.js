@@ -257,7 +257,7 @@ export default (pluginContext) => {
               const partThree = recordData.getIn(['document', 'ns2:collectionobjects_bampfa', 'accNumberPart3']);
               const partFour = recordData.getIn(['document', 'ns2:collectionobjects_bampfa', 'accNumberPart4']);
               const partFive = recordData.getIn(['document', 'ns2:collectionobjects_bampfa', 'accNumberPart5']);
-              return [prefix, partOne, partTwo, partThree, partFour, partFive].filter(part => !!part && part !== '').join('.');
+              return [prefix, partOne, partTwo, partThree, partFour, partFive].filter(part => !!part).join('.');
             },
           },
         },
@@ -1308,6 +1308,12 @@ export default (pluginContext) => {
                 readOnly: true,
               },
             },
+            messages: defineMessages({
+              name: {
+                id: 'field.collectionobjects_bampfa.effectiveObjectNumber.name',
+                defaultMessage: 'effectiveObjectNumber',
+              },
+            }),
             compute: (value, path, recordData) => {
               const prefix = recordData.getIn(['document', 'ns2:collectionobjects_bampfa', 'accNumberPrefix']);
               const partOne = recordData.getIn(['document', 'ns2:collectionobjects_bampfa', 'accNumberPart1']);
@@ -1369,9 +1375,15 @@ export default (pluginContext) => {
             view: {
               type: TextInput,
             },
+            messages: defineMessages({
+              name: {
+                id: 'field.collectionobjects_bampfa.sortableEffectiveObjectNumber.name',
+                defaultMessage: 'sortableEffectiveObjectNumber',
+              },
+            }),
             compute: (value, path, recordData) => {
               const parts = recordData.getIn(['document', 'ns2:collectionobjects_bampfa', 'effectiveObjectNumber']).split('.');
-
+              // console.log(parts);
               const sortableParts = [];
               const isNumericRegExp = /^\d+$/;
 
