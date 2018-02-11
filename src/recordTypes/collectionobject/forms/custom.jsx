@@ -94,8 +94,8 @@ const template = (pluginContext) => {
         </Row>
 
         <Row>
-          <Field name="otherNumberList" subpath="ns2:collectionobjects_bampfa">
-            <Field name="otherNumberGroup">
+          <Field name="otherNumberList" >
+            <Field name="otherNumber">
               <Field name="numberValue" />
               <Field name="numberType" />
             </Field>

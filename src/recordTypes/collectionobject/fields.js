@@ -121,6 +121,48 @@ export default (pluginContext) => {
             },
           },
         },
+        otherNumberList: {
+          otherNumber: {
+            [config]: {
+              messages: defineMessages({
+                name: {
+                  id: 'field.collectionobjects_common.otherNumber.name',
+                  defaultMessage: 'T.R./Other number',
+                },
+              }),
+            },
+            numberValue: {
+              [config]: {
+                messages: defineMessages({
+                  name: {
+                    id: 'field.collectionobjects_common.numberValue.name',
+                    defaultMessage: 'Number',
+                  },
+                  fullName: {
+                    id: 'field.collectionobjects_common.numberValue.fullName',
+                    defaultMessage: 'T.R./Other number',
+                  },
+                }),
+              },
+            },
+            numberType: {
+              [config]: {
+                messages: defineMessages({
+                  name: {
+                    id: 'field.collectionobjects_common.numberType.name',
+                    defaultMessage: 'Type',
+                  },
+                }),
+                view: {
+                  type: OptionPickerInput,
+                  props: {
+                    source: 'numberTypes',
+                  },
+                },
+              },
+            },
+          },
+        },
       },
       'ns2:collectionobjects_bampfa': {
         [config]: {
@@ -252,7 +294,7 @@ export default (pluginContext) => {
             messages: defineMessages({
               name: {
                 id: 'field.collectionobjects_bampfa.productionDate.name',
-                defaultMessage: 'Prodiction date',
+                defaultMessage: 'Production date',
               },
             }),
             view: {
@@ -433,63 +475,6 @@ export default (pluginContext) => {
               type: TextInput,
               props: {
                 multiline: true,
-              },
-            },
-          },
-        },
-        otherNumberList: {
-          [config]: {
-            messages: defineMessages({
-              name: {
-                id: 'field.collectionobjects_bampfa.otherNumberList.name',
-                defaultMessage: 'T.R. / Other number',
-              },
-            }),
-            view: {
-              type: CompoundInput,
-            },
-          },
-          otherNumberGroup: {
-            [config]: {
-              repeating: true,
-              view: {
-                type: CompoundInput,
-                props: {
-                  tabular: true,
-                },
-              },
-            },
-            numberType: {
-              [config]: {
-                messages: defineMessages({
-                  name: {
-                    id: 'field.collectionobjects_bampfa.numberType.name',
-                    defaultMessage: 'Number type',
-                  },
-                }),
-                view: {
-                  type: OptionPickerInput,
-                  props: {
-                    source: 'numberTypes',
-                  },
-                },
-              },
-            },
-            numberValue: {
-              [config]: {
-                messages: defineMessages({
-                  name: {
-                    id: 'field.collectionobjects_bampfa.numberValue.name',
-                    defaultMessage: 'Number',
-                  },
-                  fullName: {
-                    id: 'field.collectionobjects_bampfa.numberValue.fullName',
-                    defaultMessage: 'T.R/Other number',
-                  },
-                }),
-                view: {
-                  type: TextInput,
-                },
               },
             },
           },
