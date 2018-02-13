@@ -209,10 +209,10 @@ const template = (pluginContext) => {
             <Field name="acquisitionSources" subpath="ns2:collectionobjects_bampfa" >
               <Field name="acquisitionSource" />
             </Field>
-            {/* <Field mname="bampfaAcquisitionReasonList"
-            subpath="ns2:collectionobjects_bampfa"> */}
-            <Field name="bampfaAcquisitionReason" subpath="ns2:collectionobjects_bampfa" />
-            {/* </Field> */}
+
+            <Field name="bampfaAcquisitionReasonList" subpath="ns2:collectionobjects_bampfa" >
+              <Field name="bampfaAcquisitionReason" />
+            </Field>
           </div>
           <div>
             <Field name="acquisitionNote" subpath="ns2:collectionobjects_bampfa" />
@@ -236,13 +236,11 @@ const template = (pluginContext) => {
           </Field>
         </Field>
 
-        <Field name="initialValueGroup" subpath="ns2:collectionobjects_bampfa">
-          <Field name="initialValue" />
-          <Field name="initialValueSource" />
-          <Field name="initialValueDateGroup" />
-        </Field>
-
-
+        <InputTable name="initialValues">
+          <Field name="initialValue" subpath="ns2:collectionobjects_bampfa" />
+          <Field name="initialValueSource" subpath="ns2:collectionobjects_bampfa" />
+          <Field name="initialValueDateGroup" subpath="ns2:collectionobjects_bampfa" />
+        </InputTable>
       </Panel>
 
       {/* Classification */}
@@ -284,8 +282,8 @@ const template = (pluginContext) => {
       {/* Condition/Conservation info */}
       <Panel name="condition" collapsible collapsed>
 
-        <Field name="conditionCheckGroupList" subpath="ns2:collectionobjects_bampfa" >
-          <Field name="conditionCheckGroup">
+        <Field name="bampfaConditionCheckGroupList" subpath="ns2:collectionobjects_bampfa" >
+          <Field name="bampfaConditionCheckGroup">
             <Panel>
               <Row>
                 <Field name="conditionNote" />
@@ -331,8 +329,7 @@ const template = (pluginContext) => {
               <Field name="collectionText" />
               <Row>
                 <Field name="collectionTextAuthor" />
-                <Field name="collectionTextDate" />
-                {/* NOT WORKING */}
+                <Field name="collectionTextDateGroup" />
               </Row>
               <Field name="collectionTextNote" />
             </Panel>

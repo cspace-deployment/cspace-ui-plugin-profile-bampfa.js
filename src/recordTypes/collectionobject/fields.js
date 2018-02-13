@@ -668,19 +668,32 @@ export default (pluginContext) => {
             },
           },
         },
-        bampfaAcquisitionReason: { // TO DO: not saving
+        bampfaAcquisitionReasonList: {
           [config]: {
             messages: defineMessages({
               name: {
-                id: 'field.collectionobjects_bampfa.bampfaAcquisitionReason.name',
+                id: 'field.collectionobjects_bampfa.bampfaAcquisitionReasonList.name',
                 defaultMessage: 'For',
               },
             }),
-            repeating: true,
             view: {
-              type: TermPickerInput,
-              props: {
-                source: 'acquisitionreason',
+              type: CompoundInput,
+            },
+          },
+          bampfaAcquisitionReason: {
+            [config]: {
+              messages: defineMessages({
+                fullName: {
+                  id: 'field.collectionobjects_bampfa.bampfaAcquisitionReason.name',
+                  defaultMessage: 'For',
+                },
+              }),
+              repeating: true,
+              view: {
+                type: TermPickerInput,
+                props: {
+                  source: 'acquisitionreason',
+                },
               },
             },
           },
@@ -779,6 +792,10 @@ export default (pluginContext) => {
                     id: 'field.collectionobjects_bampfa.currentValue.name',
                     defaultMessage: 'Value',
                   },
+                  fullName: {
+                    id: 'field.collectionobjects_bampfa.currentValue.fullName',
+                    defaultMessage: 'Current Value',
+                  },
                 }),
                 view: {
                   type: TextInput,
@@ -791,6 +808,10 @@ export default (pluginContext) => {
                   name: {
                     id: 'field.collectionobjects_bampfa.currentValueSource.name',
                     defaultMessage: 'Source',
+                  },
+                  fullName: {
+                    id: 'field.collectionobjects_bampfa.currentValueSource.fullName',
+                    defaultMessage: 'Current value source',
                   },
                 }),
                 view: {
@@ -805,6 +826,10 @@ export default (pluginContext) => {
                     id: 'field.collectionobjects_bampfa.currentValueDateGroup.name',
                     defaultMessage: 'Date',
                   },
+                  fullName: {
+                    id: 'field.collectionobjects_bampfa.currentValueDateGroup.fullName',
+                    defaultMessage: 'Current value date',
+                  },
                 }),
                 view: {
                   type: StructuredDateInput,
@@ -813,59 +838,55 @@ export default (pluginContext) => {
             },
           },
         },
-        initialValueGroup: { // TO DO: Not working
+        initialValue: {
           [config]: {
+            dataType: DATA_TYPE_FLOAT,
             messages: defineMessages({
               name: {
-                id: 'field.collectionobjects_bampfa.initialValueGroup.name',
-                defaultMessage: 'Initial value',
+                id: 'field.collectionobjects_bampfa.initialValue.name',
+                defaultMessage: 'Value',
+              },
+              fullName: {
+                id: 'field.collectionobjects_bampfa.initialValue.fullName',
+                defaultMessage: 'Initial Value',
               },
             }),
             view: {
-              type: CompoundInput,
-              props: {
-                tabular: true,
-              },
+              type: TextInput,
             },
           },
-          initialValue: {
-            [config]: {
-              dataType: DATA_TYPE_FLOAT,
-              messages: defineMessages({
-                name: {
-                  id: 'field.collectionobjects_bampfa.initialValue.name',
-                  defaultMessage: 'Value',
-                },
-              }),
-              view: {
-                type: TextInput,
+        },
+        initialValueSource: {
+          [config]: {
+            messages: defineMessages({
+              name: {
+                id: 'field.collectionobjects_bampfa.initialValueSource.name',
+                defaultMessage: 'Source',
               },
+              fullName: {
+                id: 'field.collectionobjects_bampfa.initialValueSource.fullName',
+                defaultMessage: 'Initial value source',
+              },
+            }),
+            view: {
+              type: TextInput,
             },
           },
-          initialValueSource: {
-            [config]: {
-              messages: defineMessages({
-                name: {
-                  id: 'field.collectionobjects_bampfa.initialValueSource.name',
-                  defaultMessage: 'Source',
-                },
-              }),
-              view: {
-                type: TextInput,
+        },
+        initialValueDateGroup: {
+          [config]: {
+            messages: defineMessages({
+              name: {
+                id: 'field.collectionobjects_bampfa.initialValueDateGroup.name',
+                defaultMessage: 'Date',
               },
-            },
-          },
-          initialValueDateGroup: {
-            [config]: {
-              messages: defineMessages({
-                name: {
-                  id: 'field.collectionobjects_bampfa.initialValueDateGroup.name',
-                  defaultMessage: 'Date',
-                },
-              }),
-              view: {
-                type: StructuredDateInput,
+              fullName: {
+                id: 'field.collectionobjects_bampfa.initialValueDateGroup.fullName',
+                defaultMessage: 'Initial value date',
               },
+            }),
+            view: {
+              type: StructuredDateInput,
             },
           },
         },
@@ -1019,7 +1040,7 @@ export default (pluginContext) => {
             },
           },
         },
-        conditionCheckGroupList: { // not working
+        bampfaConditionCheckGroupList: {
           [config]: {
             messages: defineMessages({
               name: {
@@ -1031,7 +1052,7 @@ export default (pluginContext) => {
               type: CompoundInput,
             },
           },
-          conditionCheckGroup: {
+          bampfaConditionCheckGroup: {
             [config]: {
               repeating: true,
               view: {
@@ -1174,11 +1195,11 @@ export default (pluginContext) => {
                 },
               },
             },
-            collectionTextDate: { // Not working
+            collectionTextDateGroup: {
               [config]: {
                 messages: defineMessages({
                   name: {
-                    id: 'field.collectionobjects_bampfa.collectionTextDate.name',
+                    id: 'field.collectionobjects_bampfa.collectionTextDateGroup.name',
                     defaultMessage: 'Date',
                   },
                 }),
