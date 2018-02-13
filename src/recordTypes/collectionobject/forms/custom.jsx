@@ -112,7 +112,11 @@ const template = (pluginContext) => {
       <Panel name="detail" collapsible collapsed>
         <Row>
           <Col>
-            <Field name="productionDate" subpath="ns2:collectionobjects_bampfa" />
+            <Field name="objectProductionDateGroupList">
+              <Field name="objectProductionDateGroup" >
+                <Field name="productionDate" />
+              </Field>
+            </Field>
 
             <InputTable name="centuryEra">
               <Field name="objectProductionDateCentury" subpath="ns2:collectionobjects_bampfa" />
@@ -121,7 +125,10 @@ const template = (pluginContext) => {
 
           </Col>
           <Col>
-            <Field name="workDescription" subpath="ns2:collectionobjects_bampfa" />
+            <Field name="briefDescriptions">
+              <Field name="briefDescription" />
+            </Field>
+            {/* <Field name="workDescription" subpath="ns2:collectionobjects_bampfa" /> */}
           </Col>
         </Row>
         <Row>
@@ -134,7 +141,13 @@ const template = (pluginContext) => {
           </Col>
         </Row>
 
-        <Field name="productionPlace" subpath="ns2:collectionobjects_bampfa" />
+        <Field name="objectProductionPlaceGroupList">
+          <Field name="objectProductionPlaceGroup">
+            <Field name="objectProductionPlace" />
+          </Field>
+        </Field>
+
+        {/* <Field name="productionPlace" subpath="ns2:collectionobjects_bampfa" /> */}
 
         <Field name="objectProductionPeopleGroupList">
           <Field name="objectProductionPeopleGroup">
@@ -183,7 +196,9 @@ const template = (pluginContext) => {
         <Row>
           <div>
             <Field name="acquisitionMethod" subpath="ns2:collectionobjects_bampfa" />
-            <Field name="acquisitionDateGroup" subpath="ns2:collectionobjects_bampfa" />
+            <Field name="acquisitionDateGroupList" subpath="ns2:collectionobjects_bampfa">
+              <Field name="acquisitionDateGroup" />
+            </Field>
           </div>
           <div>
             <Field name="provenance" subpath="ns2:collectionobjects_bampfa" />
@@ -191,8 +206,13 @@ const template = (pluginContext) => {
         </Row>
         <Row>
           <div>
-            <Field name="acquisitionSource" subpath="ns2:collectionobjects_bampfa" />
+            <Field name="acquisitionSources" subpath="ns2:collectionobjects_bampfa" >
+              <Field name="acquisitionSource" />
+            </Field>
+            {/* <Field mname="bampfaAcquisitionReasonList"
+            subpath="ns2:collectionobjects_bampfa"> */}
             <Field name="bampfaAcquisitionReason" subpath="ns2:collectionobjects_bampfa" />
+            {/* </Field> */}
           </div>
           <div>
             <Field name="acquisitionNote" subpath="ns2:collectionobjects_bampfa" />
@@ -229,9 +249,16 @@ const template = (pluginContext) => {
       <Panel name="classification" collapsible collapsed>
         <Row>
           <Col>
-            <Field name="bampfaCollection" subpath="ns2:collectionobjects_bampfa" />
-            <Field name="subjectTheme" subpath="ns2:collectionobjects_bampfa" />
-            <Field name="style" subpath="ns2:collectionobjects_bampfa" />
+            <Field name="bampfaCollectionList" subpath="ns2:collectionobjects_bampfa" >
+              <Field name="bampfaCollection" />
+            </Field>
+            <Field name="subjectThemes" subpath="ns2:collectionobjects_bampfa">
+              <Field name="subjectTheme" />
+            </Field>
+            <Field name="styles">
+              <Field name="style" />
+            </Field>
+
           </Col>
           <Col>
             <Field name="partOf" subpath="ns2:collectionobjects_bampfa" />
@@ -286,7 +313,9 @@ const template = (pluginContext) => {
       {/* notes panel */}
       <Panel name="notes" collapsible collapsed>
         <div>
-          <Field name="comments" subpath="ns2:collectionobjects_bampfa" />
+          <Field name="comments">
+            <Field name="comment" />
+          </Field>
         </div>
       </Panel>
 
@@ -303,6 +332,7 @@ const template = (pluginContext) => {
               <Row>
                 <Field name="collectionTextAuthor" />
                 <Field name="collectionTextDate" />
+                {/* NOT WORKING */}
               </Row>
               <Field name="collectionTextNote" />
             </Panel>

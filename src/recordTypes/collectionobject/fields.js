@@ -163,6 +163,32 @@ export default (pluginContext) => {
             },
           },
         },
+        objectProductionPlaceGroupList: {
+          objectProductionPlaceGroup: {
+            objectProductionPlace: {
+              [config]: {
+                view: {
+                  type: TextInput,
+                  props: {
+                    multiline: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+        styles: {
+          style: {
+            [config]: {
+              view: {
+                type: TermPickerInput,
+                props: {
+                  source: 'periodorstyle',
+                },
+              },
+            },
+          },
+        },
       },
       'ns2:collectionobjects_bampfa': {
         [config]: {
@@ -282,19 +308,6 @@ export default (pluginContext) => {
               name: {
                 id: 'field.collectionobjects_bampfa.legalStatusDateGroup.name',
                 defaultMessage: 'Status date',
-              },
-            }),
-            view: {
-              type: StructuredDateInput,
-            },
-          },
-        },
-        productionDate: {
-          [config]: {
-            messages: defineMessages({
-              name: {
-                id: 'field.collectionobjects_bampfa.productionDate.name',
-                defaultMessage: 'Production date',
               },
             }),
             view: {
@@ -529,34 +542,27 @@ export default (pluginContext) => {
             },
           },
         },
-        workDescription: {
+        acquisitionDateGroupList: {
           [config]: {
-            messages: defineMessages({
-              name: {
-                id: 'field.collectionobjects_bampfa.workDescription.name',
-                defaultMessage: 'Description of work',
-              },
-            }),
             view: {
-              type: TextInput,
-            // },
-              props: {
-                multiline: true,
-              },
+              type: CompoundInput,
             },
           },
-        },
-        acquisitionDateGroup: {
-          [config]: {
-            messages: defineMessages({
-              name: {
-                id: 'field.collectionobjects_bampfa.acquisitionDateGroup.name',
-                defaultMessage: 'Acquisition date',
+          acquisitionDateGroup: {
+            [config]: {
+              messages: defineMessages({
+                name: {
+                  id: 'field.collectionobjects_bampfa.acquisitionDateGroup.name',
+                  defaultMessage: 'Acquisition date',
+                },
+              }),
+              repeating: true,
+              searchView: {
+                type: DateInput,
               },
-            }),
-            repeating: true,
-            view: {
-              type: StructuredDateInput,
+              view: {
+                type: StructuredDateInput,
+              },
             },
           },
         },
@@ -571,23 +577,6 @@ export default (pluginContext) => {
             }),
             view: {
               type: TextInput,
-            },
-          },
-        },
-        productionPlace: {
-          [config]: {
-            messages: defineMessages({
-              name: {
-                id: 'field.collectionobjects_bampfa.productionPlace.name',
-                defaultMessage: 'Production place',
-              },
-            }),
-            repeating: true,
-            view: {
-              type: TextInput,
-              props: {
-                multiline: true,
-              },
             },
           },
         },
@@ -652,21 +641,34 @@ export default (pluginContext) => {
             },
           },
         },
-        acquisitionSource: {
+        acquisitionSources: {
           [config]: {
             messages: defineMessages({
               name: {
-                id: 'field.collectionobjects_bampfa.acquisitionSource.name',
-                defaultMessage: 'Source',
+                id: 'field.collectionobjects_bampfa.acquisitionSources.name',
+                defaultMessage: 'Acquisition source',
               },
             }),
-            repeating: true,
             view: {
-              type: TextInput,
+              type: CompoundInput,
+            },
+          },
+          acquisitionSource: {
+            [config]: {
+              messages: defineMessages({
+                fullName: {
+                  id: 'field.collectionobjects_bampfa.acquisitionSource.name',
+                  defaultMessage: 'Acquisition source',
+                },
+              }),
+              repeating: true,
+              view: {
+                type: TextInput,
+              },
             },
           },
         },
-        bampfaAcquisitionReason: {
+        bampfaAcquisitionReason: { // TO DO: not saving
           [config]: {
             messages: defineMessages({
               name: {
@@ -811,7 +813,7 @@ export default (pluginContext) => {
             },
           },
         },
-        initialValueGroup: {
+        initialValueGroup: { // TO DO: Not working
           [config]: {
             messages: defineMessages({
               name: {
@@ -867,53 +869,62 @@ export default (pluginContext) => {
             },
           },
         },
-        bampfaCollection: {
+        bampfaCollectionList: {
           [config]: {
             messages: defineMessages({
               name: {
-                id: 'field.collectionobjects_bampfa.bampfaCollection.name',
+                id: 'field.collectionobjects_bampfa.bampfaCollectionList.name',
                 defaultMessage: 'Collection',
               },
             }),
-            repeating: true,
             view: {
-              type: TermPickerInput,
-              props: {
-                source: 'collection',
+              type: CompoundInput,
+            },
+          },
+          bampfaCollection: {
+            [config]: {
+              messages: defineMessages({
+                fullName: {
+                  id: 'field.collectionobjects_bampfa.bampfaCollection.name',
+                  defaultMessage: 'Collection',
+                },
+              }),
+              repeating: true,
+              view: {
+                type: TermPickerInput,
+                props: {
+                  source: 'collection',
+                },
               },
             },
           },
         },
-        subjectTheme: {
+        subjectThemes: {
           [config]: {
             messages: defineMessages({
               name: {
-                id: 'field.collectionobjects_bampfa.subjectTheme.name',
+                id: 'field.collectionobjects_bampfa.subjectThemes.name',
                 defaultMessage: 'Subject/Theme',
               },
             }),
-            repeating: true,
             view: {
-              type: TermPickerInput,
-              props: {
-                source: 'subjectsandthemes',
-              },
+              type: CompoundInput,
             },
           },
-        },
-        style: {
-          [config]: {
-            messages: defineMessages({
-              name: {
-                id: 'field.collectionobjects_bampfa.style.name',
-                defaultMessage: 'Period/Style',
-              },
-            }),
-            repeating: true,
-            view: {
-              type: TermPickerInput,
-              props: {
-                source: 'periodorstyle',
+          subjectTheme: {
+            [config]: {
+              messages: defineMessages({
+                fullName: {
+                  id: 'field.collectionobjects_bampfa.subjectTheme.name',
+                  defaultMessage: 'Subject/Theme',
+                },
+              }),
+              repeating: true,
+              view: {
+                type: TermPickerInput,
+                props: {
+                  source: 'subjectsandthemes',
+                },
               },
             },
           },
@@ -1008,7 +1019,7 @@ export default (pluginContext) => {
             },
           },
         },
-        conditionCheckGroupList: {
+        conditionCheckGroupList: { // not working
           [config]: {
             messages: defineMessages({
               name: {
@@ -1088,23 +1099,6 @@ export default (pluginContext) => {
             },
           },
         },
-        comments: {
-          [config]: {
-            messages: defineMessages({
-              name: {
-                id: 'field.collectionobjects_bampfa.comments.name',
-                defaultMessage: 'Notes',
-              },
-            }),
-            repeating: true,
-            view: {
-              type: TextInput,
-              props: {
-                multiline: true,
-              },
-            },
-          },
-        },
         collectionTextGroupList: {
           [config]: {
             messages: defineMessages({
@@ -1180,7 +1174,7 @@ export default (pluginContext) => {
                 },
               },
             },
-            collectionTextDate: {
+            collectionTextDate: { // Not working
               [config]: {
                 messages: defineMessages({
                   name: {
