@@ -1154,7 +1154,6 @@ export default (pluginContext) => {
             },
             collectionTextDoNotPublish: {
               [config]: {
-                dataType: DATA_TYPE_BOOL,
                 messages: defineMessages({
                   name: {
                     id: 'field.collectionobjects_bampfa.collectionTextDoNotPublish.name',
@@ -1267,7 +1266,7 @@ export default (pluginContext) => {
                 messages: defineMessages({
                   name: {
                     id: 'field.collectionobjects_bampfa.catalogDate.name',
-                    defaultMessage: 'Source',
+                    defaultMessage: 'Date',
                   },
                 }),
                 view: {
@@ -1280,11 +1279,11 @@ export default (pluginContext) => {
                 messages: defineMessages({
                   name: {
                     id: 'field.collectionobjects_bampfa.catalogNote.name',
-                    defaultMessage: 'Date',
+                    defaultMessage: 'Note',
                   },
                 }),
                 view: {
-                  type: DateInput,
+                  type: TextInput,
                 },
               },
             },

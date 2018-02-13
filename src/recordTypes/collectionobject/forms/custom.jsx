@@ -346,8 +346,8 @@ const template = (pluginContext) => {
         <Field name="catalogerGroupList" subpath="ns2:collectionobjects_bampfa">
           <Field name="catalogerGroup">
             <Field name="catalogerName" />
-            <Field name="catalogNote" />
             <Field name="catalogDate" />
+            <Field name="catalogNote" />
           </Field>
         </Field>
       </Panel>
