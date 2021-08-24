@@ -27,10 +27,9 @@ export default (configContext) => {
               <Field name="value" />
               <Field name="measurementUnit" />
               <Field name="valueQualifier" />
+              <Field name="dimensionNote" />
             </Field>
           </Field>
-
-          <Field name="measuredPartNote" />
         </Panel>
       </Field>
     </Field>
